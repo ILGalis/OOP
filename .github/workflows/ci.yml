@@ -1,0 +1,82 @@
+# Имя Workflow (будет отображаться на вкладке Actions)
+name: Java CI with Gradle
+
+# Условия запуска
+on:
+  # Запуск при пуше в main или master
+  push:
+    branches: [ "main", "master" ]
+  
+  # Запуск при создании или обновлении Pull Request
+  pull_request:
+    branches: [ "main", "master" ]
+  
+  # Возможность запустить вручную из интерфейса GitHub
+  workflow_dispatch:
+
+# Задачи (jobs)
+jobs:
+  # Основная задача сборки
+  build:
+    # Запускаем на Ubuntu (можно изменить на windows или macos)
+    runs-on: ubuntu-latest
+
+    # Шаги выполнения
+    steps:
+      # 1. Клонируем репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Настраиваем Java (укажите вашу версию!)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      # 3. Даём права на выполнение gradlew (для Linux/macOS)
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 4. Сборка, тесты и генерация отчёта JaCoCo
+      - name: Build with Gradle
+        run: |
+          # Определяем папку с лабораторной по имени Pull Request
+          LAB_FOLDER="${{ github.event.pull_request.title }}"
+          
+          # Если запуск не через PR, используем переменную или папку по умолчанию
+          if [ -z "$LAB_FOLDER" ]; then
+            echo "❌ Не удалось определить папку (не Pull Request)"
+            echo "ℹ️  Используем папку по умолчанию: Task_1_1_1"
+            LAB_FOLDER="Task_1_1_1"
+          fi
+          
+          echo "📁 Сборка лабораторной: $LAB_FOLDER"
+          
+          # Проверяем, существует ли папка
+          if [ ! -d "$LAB_FOLDER" ]; then
+            echo "❌ Папка $LAB_FOLDER не найдена!"
+            exit 1
+          fi
+          
+          # Переходим в папку с лабораторной и запускаем сборку
+          cd "$LAB_FOLDER"
+          ./gradlew build test jacocoTestReport
+
+      # 5. Загружаем отчёт о покрытии как артефакт (можно скачать)
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()  # Загружаем даже если тесты упали
+        with:
+          name: coverage-report
+          path: ${{ github.event.pull_request.title }}/build/reports/jacoco/test/html/
+
+      # 6. Публикуем Javadoc на GitHub Pages
+      - name: Deploy Javadoc to GitHub Pages
+        uses: dev-vince/actions-publish-javadoc@v1.0.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          project: gradle
+          branch: gh-pages
+          path: ${{ github.event.pull_request.title }}/build/docs/javadoc/
