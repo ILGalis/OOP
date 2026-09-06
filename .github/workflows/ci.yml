@@ -21,10 +21,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: gradle
-          gradle-home-path: Task_1_1_1   # <-- ЭТО ФИКСИТ ОШИБКУ
+          gradle-home-path: Task_1_1_1
 
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        run: |
+          LAB_FOLDER="${{ github.event.pull_request.title }}"
+          if [ -z "$LAB_FOLDER" ]; then
+            LAB_FOLDER="Task_1_1_1"
+          fi
+          chmod +x "$LAB_FOLDER/gradlew"
 
       - name: Build with Gradle
         run: |
