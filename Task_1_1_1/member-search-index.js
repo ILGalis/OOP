@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"ru.example","c":"Main","l":"add(int, int)","u":"add(int,int)"},{"p":"ru.example","c":"Main","l":"Main()","u":"%3Cinit%3E()"},{"p":"ru.example","c":"Main","l":"main(String[])","u":"main(java.lang.String[])"},{"p":"ru.example","c":"Main","l":"subtract(int, int)","u":"subtract(int,int)"}];updateSearchResults();
