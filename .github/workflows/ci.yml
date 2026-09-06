@@ -31,7 +31,7 @@ jobs:
           fi
           chmod +x "$LAB_FOLDER/gradlew"
 
-      - name: Build with Gradle
+      - name: Build and run tests with Gradle
         run: |
           LAB_FOLDER="${{ github.event.pull_request.title }}"
           if [ -z "$LAB_FOLDER" ]; then
@@ -46,6 +46,15 @@ jobs:
           fi
           cd "$LAB_FOLDER"
           ./gradlew build test jacocoTestReport
+
+      - name: Generate Javadoc with Gradle
+        run: |
+          LAB_FOLDER="${{ github.event.pull_request.title }}"
+          if [ -z "$LAB_FOLDER" ]; then
+            LAB_FOLDER="Task_1_1_1"
+          fi
+          cd "$LAB_FOLDER"
+          ./gradlew javadoc
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
