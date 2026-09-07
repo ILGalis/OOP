@@ -76,6 +76,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">HeapSort</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Реализация пирамидальной сортировки.
+ Сортирует массив на месте за O(n log n) времени, память O(1) соответственно.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -105,20 +107,28 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#build(int%5B%5D)" class="member-name-link">build</a><wbr>(int[]&nbsp;arr)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Строит кучу, используя просеивание.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#heapsift(int%5B%5D,int,int)" class="member-name-link">heapsift</a><wbr>(int[]&nbsp;arr,
  int&nbsp;n,
  int&nbsp;i)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Просеивает элемент вниз по куче.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sort(int%5B%5D)" class="member-name-link">sort</a><wbr>(int[]&nbsp;arr)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Сортирует уже сам массив пирамидальной сортировкой.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#swap(int%5B%5D,int,int)" class="member-name-link">swap</a><wbr>(int[]&nbsp;arr,
  int&nbsp;i,
- int&nbsp;n)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+ int&nbsp;j)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Меняет местами два элемента в массиве.</div>
+</div>
 </div>
 </div>
 </div>
@@ -156,6 +166,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">heapsift</span><wbr><span class="parameters">(int[]&nbsp;arr,
  int&nbsp;n,
  int&nbsp;i)</span></div>
+<div class="block">Просеивает элемент вниз по куче.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>arr</code> - массив</dd>
+<dd><code>n</code> - размер кучи</dd>
+<dd><code>i</code> - индекс элемента для просеивания</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -163,19 +180,38 @@ loadScripts(document, 'script');</script>
 <h3>swap</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">swap</span><wbr><span class="parameters">(int[]&nbsp;arr,
  int&nbsp;i,
- int&nbsp;n)</span></div>
+ int&nbsp;j)</span></div>
+<div class="block">Меняет местами два элемента в массиве.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>arr</code> - массив</dd>
+<dd><code>j</code> - индекс элемента первого</dd>
+<dd><code>i</code> - индекс элемента второго</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="build(int[])">
 <h3>build</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">build</span><wbr><span class="parameters">(int[]&nbsp;arr)</span></div>
+<div class="block">Строит кучу, используя просеивание.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>arr</code> - массив</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="sort(int[])">
 <h3>sort</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">sort</span><wbr><span class="parameters">(int[]&nbsp;arr)</span></div>
+<div class="block">Сортирует уже сам массив пирамидальной сортировкой.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>arr</code> - массив</dd>
+<dt>Returns:</dt>
+<dd>отсортированный массив</dd>
+</dl>
 </section>
 </li>
 </ul>
