@@ -72,4 +72,18 @@ public class HeapSort {
         return arr;
     }
 
+    /**
+     *Проверка работы алгоритма.
+     *
+     * @param args аргументы командной строки
+     */
+    public static void main(String[] args) {
+        int[] arr = {5, 2, 8, 1, 9, 3, 6};
+        System.out.println("До сортировки: " + java.util.Arrays.toString(arr));
+
+        HeapSort.sort(arr);
+
+        System.out.println("После сортировки: " + java.util.Arrays.toString(arr));
+    }
+
     }
