@@ -2,8 +2,11 @@ package ru.example.blackjack;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Проверяет работу перечисления Rank.
+ */
 public class RankTest {
 
     @Test

@@ -1,11 +1,14 @@
 package ru.example.blackjack;
 
-import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayInputStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+/**
+ * Проверяет запуск главного класса приложения.
+ */
 public class MainTest {
 
     @Test

@@ -2,8 +2,12 @@ package ru.example.blackjack;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Проверяет работу класса Player.
+ */
 public class PlayerTest {
 
     @Test
