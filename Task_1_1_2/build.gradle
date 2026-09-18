@@ -19,7 +19,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'ru.example.Main'
+    mainClass = 'ru.example.BlackJack'
 }
 
 test {

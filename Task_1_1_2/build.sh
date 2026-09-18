@@ -10,4 +10,4 @@ javadoc -d build/docs/javadoc src/main/java/*.java
 
 jar cfm build/libs/app.jar MANIFEST.MF -C build/classes .
 
-java -cp build/classes ru.example.HeapSort
+java -cp build/classes ru.example.blackjack.Main
