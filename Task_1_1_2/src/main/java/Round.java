@@ -12,7 +12,7 @@ public class Round {
     /**
      * Возможные результаты раунда.
      */
-    public enum RoundResult{
+    public enum RoundResult {
         PLAYER_WIN,
         DEALER_WIN,
         DRAW
@@ -22,7 +22,7 @@ public class Round {
      * Создаёт новый раунд, инициализирует колоду,
      * игрока и дилера, а также перемешивает колоду.
      */
-    public Round () {
+    public Round() {
         deck = new Deck();
         player = new Player();
         dealer = new Dealer();
@@ -37,7 +37,6 @@ public class Round {
         player.takeCard(deck.takeCard());
         dealer.takeCard(deck.takeCard());
         dealer.takeCard(deck.takeCard());
-
     }
 
     /**

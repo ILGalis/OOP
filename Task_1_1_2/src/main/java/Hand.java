@@ -1,4 +1,5 @@
 package ru.example.blackjack;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class Hand {
     /**
      * Создаёт пустую руку.
      */
-    public Hand (){
+    public Hand() {
         cards = new ArrayList<>();
     }
 
@@ -32,16 +33,16 @@ public class Hand {
      *
      * @return количество очков в руке
      */
-    public int getScore(){
+    public int getScore() {
         int total = 0;
         int countAce = 0;
-        for (Card card : cards){
-            if (card.getRank() == Rank.ACE){
+        for (Card card : cards) {
+            if (card.getRank() == Rank.ACE) {
                 countAce++;
             }
             total += card.getRank().getValue();
         }
-        while (total>21 && countAce>0){
+        while (total > 21 && countAce > 0) {
             total -= 10;
             countAce--;
         }

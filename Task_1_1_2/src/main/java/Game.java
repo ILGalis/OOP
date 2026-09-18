@@ -35,43 +35,40 @@ public class Game {
             round.startRound();
             System.out.println("Твои карты: " + round.getPlayer().getHand().getCards());
             System.out.println("Твои очки: " + round.getPlayer().getScore());
-            System.out.println("Карта дилера: " + round.getDealer().getHand().getCards().get(0));
+            System.out.println("Карта дилера: "
+                    + round.getDealer().getHand().getCards().get(0));
             if (round.getPlayer().getHand().isBlackjack()) {
                 System.out.println("Blackjack! Ты выиграл!");
                 playerWins++;
                 showScore();
-            }
-            else {
+            } else {
                 boolean playerContinue = playerTurn();
                 if (!playerContinue) {
                     System.out.println("Перебор! Ты проиграл.");
                     dealerWins++;
                     showResult();
                     showScore();
-                }
-                else {
+                } else {
                     round.dealerTurn();
                     showResult();
                     if (round.getDealer().getHand().isBust()) {
                         System.out.println("Дилер перебрал. Ты выиграл!");
                         playerWins++;
                         showScore();
-                    }
-                    else if (round.getDealer().getHand().isBlackjack()) {
+                    } else if (round.getDealer().getHand().isBlackjack()) {
                         System.out.println("У дилера Blackjack. Ты проиграл.");
                         dealerWins++;
                         showScore();
-                    }
-                    else if (round.getDealer().getScore() > round.getPlayer().getScore()) {
+                    } else if (round.getDealer().getScore()
+                            > round.getPlayer().getScore()) {
                         System.out.println("Ты проиграл.");
                         dealerWins++;
                         showScore();
-                    }
-                    else if (round.getDealer().getScore() == round.getPlayer().getScore()) {
+                    } else if (round.getDealer().getScore()
+                            == round.getPlayer().getScore()) {
                         System.out.println("Ничья.");
                         showScore();
-                    }
-                    else {
+                    } else {
                         System.out.println("Ты выиграл!");
                         playerWins++;
                         showScore();
@@ -109,11 +106,9 @@ public class Game {
                 if (round.getPlayer().getHand().isBust()) {
                     return false;
                 }
-            }
-            else if (input.equals("0")) {
+            } else if (input.equals("0")) {
                 return true;
-            }
-            else {
+            } else {
                 System.out.println("Введи 0 или 1.");
             }
         }
@@ -136,7 +131,7 @@ public class Game {
      * Выводит текущий счёт побед игрока и дилера.
      */
     private void showScore() {
-        System.out.println("Счёт: Игрок " + playerWins +
-                " : " + dealerWins + " Дилер");
+        System.out.println("Счёт: Игрок " + playerWins
+                + " : " + dealerWins + " Дилер");
     }
 }

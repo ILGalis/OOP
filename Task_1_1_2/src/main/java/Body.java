@@ -12,7 +12,7 @@ public abstract class Body {
     /**
      * Создаёт участника с пустой рукой.
      */
-    public Body () {
+    public Body() {
         hand = new Hand();
     }
 

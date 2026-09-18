@@ -16,9 +16,9 @@ public class Deck {
      */
     public Deck() {
         cards = new ArrayList<>();
-        for (Suit suit : Suit.values()){
-            for (Rank rank : Rank.values()){
-                cards.add(new Card(suit,rank));
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                cards.add(new Card(suit, rank));
             }
         }
     }
@@ -36,6 +36,6 @@ public class Deck {
      * @return извлечённая карта
      */
     public Card takeCard() {
-        return cards.remove(cards.size()-1);
+        return cards.remove(cards.size() - 1);
     }
 }

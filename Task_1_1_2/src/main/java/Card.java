@@ -15,7 +15,7 @@ public class Card {
      * @param suit масть карты
      * @param rank достоинство карты
      */
-    public Card (Suit suit, Rank rank) {
+    public Card(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;
     }
@@ -25,7 +25,7 @@ public class Card {
      *
      * @return масть карты
      */
-    public Suit getSuit () {
+    public Suit getSuit() {
         return suit;
     }
 
@@ -34,7 +34,7 @@ public class Card {
      *
      * @return достоинство карты
      */
-    public Rank getRank () {
+    public Rank getRank() {
         return rank;
     }
 

@@ -35,7 +35,7 @@ public enum Rank {
      *
      * @return количество очков
      */
-    public int getValue(){
+    public int getValue() {
         return value;
     }
 }
