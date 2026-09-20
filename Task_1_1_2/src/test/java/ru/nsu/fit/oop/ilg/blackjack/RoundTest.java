@@ -1,4 +1,4 @@
-package ru.example.blackjack;
+package ru.nsu.fit.oop.ilg.blackjack;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;

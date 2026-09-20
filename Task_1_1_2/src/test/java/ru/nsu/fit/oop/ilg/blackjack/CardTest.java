@@ -1,4 +1,4 @@
-package ru.example.blackjack;
+package ru.nsu.fit.oop.ilg.blackjack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,9 +18,9 @@ public class CardTest {
     }
 
     @Test
-    void toStringShouldContainRankAndSuit() {
+    void toStringShouldContainRussianRankAndSuit() {
         Card card = new Card(Suit.HEARTS, Rank.ACE);
 
-        assertEquals("ACE of HEARTS", card.toString());
+        assertEquals("Туз Черви", card.toString());
     }
 }

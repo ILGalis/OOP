@@ -1,4 +1,4 @@
-package ru.example.blackjack;
+package ru.nsu.fit.oop.ilg.blackjack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,6 +9,16 @@ import org.junit.jupiter.api.Test;
  * Проверяет работу класса Dealer.
  */
 public class DealerTest {
+
+    @Test
+    void dealerShouldTakeInitialCards() {
+        Dealer dealer = new Dealer();
+        Deck deck = new Deck();
+
+        dealer.takeInitialCards(deck);
+
+        assertEquals(2, dealer.getHand().getCards().size());
+    }
 
     @Test
     void dealerShouldTakeCardsUntilScoreIsAtLeast17() {

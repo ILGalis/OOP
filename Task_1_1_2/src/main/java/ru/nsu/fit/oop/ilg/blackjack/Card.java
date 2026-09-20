@@ -1,19 +1,17 @@
-package ru.example.blackjack;
+package ru.nsu.fit.oop.ilg.blackjack;
 
 /**
  * Представляет игральную карту.
- * Каждая карта имеет масть и достоинство.
  */
 public class Card {
-
-    private Suit suit;
-    private Rank rank;
+    private final Suit suit;
+    private final Rank rank;
 
     /**
-     * Создаёт карту с указанной мастью и достоинством.
+     * Создаёт карту.
      *
-     * @param suit масть карты
-     * @param rank достоинство карты
+     * @param suit масть
+     * @param rank достоинство
      */
     public Card(Suit suit, Rank rank) {
         this.suit = suit;
@@ -23,7 +21,7 @@ public class Card {
     /**
      * Возвращает масть карты.
      *
-     * @return масть карты
+     * @return масть
      */
     public Suit getSuit() {
         return suit;
@@ -32,7 +30,7 @@ public class Card {
     /**
      * Возвращает достоинство карты.
      *
-     * @return достоинство карты
+     * @return достоинство
      */
     public Rank getRank() {
         return rank;
@@ -41,10 +39,10 @@ public class Card {
     /**
      * Возвращает строковое представление карты.
      *
-     * @return строка с достоинством и мастью карты
+     * @return строка с достоинством и мастью
      */
     @Override
     public String toString() {
-        return rank + " of " + suit;
+        return rank.getRussianName() + " " + suit.getRussianName();
     }
 }

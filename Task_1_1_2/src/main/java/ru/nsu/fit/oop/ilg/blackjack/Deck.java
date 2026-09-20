@@ -1,4 +1,4 @@
-package ru.example.blackjack;
+package ru.nsu.fit.oop.ilg.blackjack;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,13 +6,12 @@ import java.util.List;
 
 /**
  * Представляет колоду игральных карт.
- * Колода содержит карты всех мастей и достоинств.
  */
 public class Deck {
-    private List<Card> cards;
+    private final List<Card> cards;
 
     /**
-     * Создаёт новую колоду и заполняет её всеми возможными картами.
+     * Создаёт новую колоду из 52 карт.
      */
     public Deck() {
         cards = new ArrayList<>();
