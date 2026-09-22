@@ -3,6 +3,7 @@ package ru.nsu.fit.oop.ilg.blackjack;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.fit.oop.ilg.blackjack.game.Game;
 
 /**
  * Проверяет работу класса Game.

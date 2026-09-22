@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.fit.oop.ilg.blackjack.card.Card;
+import ru.nsu.fit.oop.ilg.blackjack.card.Rank;
+import ru.nsu.fit.oop.ilg.blackjack.card.Suit;
+import ru.nsu.fit.oop.ilg.blackjack.player.Player;
 
 /**
  * Проверяет работу класса Player.

@@ -1,4 +1,7 @@
-package ru.nsu.fit.oop.ilg.blackjack;
+package ru.nsu.fit.oop.ilg.blackjack.view;
+
+import ru.nsu.fit.oop.ilg.blackjack.player.Dealer;
+import ru.nsu.fit.oop.ilg.blackjack.player.Player;
 
 /**
  * Отвечает за вывод игровой информации в консоль.

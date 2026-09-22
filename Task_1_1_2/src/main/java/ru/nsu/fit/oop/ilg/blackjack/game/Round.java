@@ -1,4 +1,8 @@
-package ru.nsu.fit.oop.ilg.blackjack;
+package ru.nsu.fit.oop.ilg.blackjack.game;
+
+import ru.nsu.fit.oop.ilg.blackjack.card.Deck;
+import ru.nsu.fit.oop.ilg.blackjack.player.Dealer;
+import ru.nsu.fit.oop.ilg.blackjack.player.Player;
 
 /**
  * Представляет отдельный раунд игры Blackjack.

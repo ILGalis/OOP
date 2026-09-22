@@ -4,6 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.fit.oop.ilg.blackjack.card.Card;
+import ru.nsu.fit.oop.ilg.blackjack.card.Deck;
+import ru.nsu.fit.oop.ilg.blackjack.card.Rank;
+import ru.nsu.fit.oop.ilg.blackjack.card.Suit;
+import ru.nsu.fit.oop.ilg.blackjack.player.Dealer;
 
 /**
  * Проверяет работу класса Dealer.

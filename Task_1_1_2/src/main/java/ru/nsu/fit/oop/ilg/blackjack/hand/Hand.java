@@ -1,4 +1,7 @@
-package ru.nsu.fit.oop.ilg.blackjack;
+package ru.nsu.fit.oop.ilg.blackjack.hand;
+
+import ru.nsu.fit.oop.ilg.blackjack.card.Card;
+import ru.nsu.fit.oop.ilg.blackjack.card.Rank;
 
 import java.util.ArrayList;
 import java.util.List;

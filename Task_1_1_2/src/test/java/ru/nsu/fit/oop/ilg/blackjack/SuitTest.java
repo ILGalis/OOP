@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.fit.oop.ilg.blackjack.card.Suit;
 
 /**
  * Тесты для перечисления {@link Suit}.

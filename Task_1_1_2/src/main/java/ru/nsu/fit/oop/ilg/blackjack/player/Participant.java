@@ -1,4 +1,7 @@
-package ru.nsu.fit.oop.ilg.blackjack;
+package ru.nsu.fit.oop.ilg.blackjack.player;
+
+import ru.nsu.fit.oop.ilg.blackjack.card.Card;
+import ru.nsu.fit.oop.ilg.blackjack.hand.Hand;
 
 /**
  * Базовый класс для участников игры (игрока и дилера).

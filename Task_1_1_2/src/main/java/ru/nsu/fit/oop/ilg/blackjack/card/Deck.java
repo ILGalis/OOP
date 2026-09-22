@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.ilg.blackjack;
+package ru.nsu.fit.oop.ilg.blackjack.card;
 
 import java.util.ArrayList;
 import java.util.Collections;

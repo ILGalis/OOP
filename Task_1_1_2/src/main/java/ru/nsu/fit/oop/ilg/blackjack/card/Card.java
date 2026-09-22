@@ -1,4 +1,4 @@
-package ru.nsu.fit.oop.ilg.blackjack;
+package ru.nsu.fit.oop.ilg.blackjack.card;
 
 /**
  * Представляет игральную карту.

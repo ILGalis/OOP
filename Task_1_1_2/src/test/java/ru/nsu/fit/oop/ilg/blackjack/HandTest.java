@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.fit.oop.ilg.blackjack.card.Card;
+import ru.nsu.fit.oop.ilg.blackjack.card.Rank;
+import ru.nsu.fit.oop.ilg.blackjack.card.Suit;
+import ru.nsu.fit.oop.ilg.blackjack.hand.Hand;
 
 /**
  * Проверяет работу класса Hand.

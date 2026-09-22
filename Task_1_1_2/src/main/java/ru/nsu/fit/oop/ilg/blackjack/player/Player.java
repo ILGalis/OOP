@@ -1,4 +1,6 @@
-package ru.nsu.fit.oop.ilg.blackjack;
+package ru.nsu.fit.oop.ilg.blackjack.player;
+
+import ru.nsu.fit.oop.ilg.blackjack.card.Deck;
 
 /**
  * Представляет игрока в игре Blackjack.
