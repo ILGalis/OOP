@@ -93,7 +93,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static interface&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Game.PlayerDecision.html" class="type-name-link" title="interface in ru.nsu.fit.oop.ilg.blackjack.game">Game.PlayerDecision</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Функциональный интерфейс для решения игрока.</div>
+</div>
 </div>
 </section>
 </li>
@@ -106,7 +108,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">Game</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создаёт новую игру.</div>
+</div>
 </div>
 </section>
 </li>
@@ -123,14 +127,20 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDealerWins()" class="member-name-link">getDealerWins</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает количество побед дилера.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPlayerWins()" class="member-name-link">getPlayerWins</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает количество побед игрока.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="RoundResult.html" title="enum class in ru.nsu.fit.oop.ilg.blackjack.game">RoundResult</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playRound(ru.nsu.fit.oop.ilg.blackjack.game.Game.PlayerDecision,java.util.function.Consumer)" class="member-name-link">playRound</a><wbr>(<a href="Game.PlayerDecision.html" title="interface in ru.nsu.fit.oop.ilg.blackjack.game">Game.PlayerDecision</a>&nbsp;decision,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="Round.html" title="class in ru.nsu.fit.oop.ilg.blackjack.game">Round</a>&gt;&nbsp;roundView)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Играет один раунд.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#startGame()" class="member-name-link">startGame</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -157,6 +167,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>Game</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Game</span>()</div>
+<div class="block">Создаёт новую игру.</div>
 </section>
 </li>
 </ul>
@@ -179,18 +190,36 @@ loadScripts(document, 'script');</script>
 <h3>playRound</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="RoundResult.html" title="enum class in ru.nsu.fit.oop.ilg.blackjack.game">RoundResult</a></span>&nbsp;<span class="element-name">playRound</span><wbr><span class="parameters">(<a href="Game.PlayerDecision.html" title="interface in ru.nsu.fit.oop.ilg.blackjack.game">Game.PlayerDecision</a>&nbsp;decision,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;<a href="Round.html" title="class in ru.nsu.fit.oop.ilg.blackjack.game">Round</a>&gt;&nbsp;roundView)</span></div>
+<div class="block">Играет один раунд.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>decision</code> - решение игрока о взятии карты</dd>
+<dd><code>roundView</code> - обработчик завершённого раунда</dd>
+<dt>Returns:</dt>
+<dd>результат раунда</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getPlayerWins()">
 <h3>getPlayerWins</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getPlayerWins</span>()</div>
+<div class="block">Возвращает количество побед игрока.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>победы игрока</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getDealerWins()">
 <h3>getDealerWins</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getDealerWins</span>()</div>
+<div class="block">Возвращает количество побед дилера.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>победы дилера</dd>
+</dl>
 </section>
 </li>
 </ul>
