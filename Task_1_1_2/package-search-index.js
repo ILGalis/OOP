@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.fit.oop.ilg.blackjack"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.fit.oop.ilg.blackjack"},{"l":"ru.nsu.fit.oop.ilg.blackjack.card"},{"l":"ru.nsu.fit.oop.ilg.blackjack.game"},{"l":"ru.nsu.fit.oop.ilg.blackjack.hand"},{"l":"ru.nsu.fit.oop.ilg.blackjack.player"},{"l":"ru.nsu.fit.oop.ilg.blackjack.view"}];updateSearchResults();
