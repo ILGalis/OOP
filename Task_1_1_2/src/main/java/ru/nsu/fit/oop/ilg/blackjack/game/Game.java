@@ -1,9 +1,9 @@
 package ru.nsu.fit.oop.ilg.blackjack.game;
 
-import ru.nsu.fit.oop.ilg.blackjack.view.ConsoleView;
-
 import java.util.Scanner;
 import java.util.function.Consumer;
+
+import ru.nsu.fit.oop.ilg.blackjack.view.ConsoleView;
 
 /**
  * Управляет логикой игры Blackjack.
@@ -13,6 +13,9 @@ public class Game {
     private int playerWins;
     private int dealerWins;
 
+    /**
+     * Создаёт новую игру.
+     */
     public Game() {
         playerWins = 0;
         dealerWins = 0;
@@ -50,6 +53,13 @@ public class Game {
         scanner.close();
     }
 
+    /**
+     * Играет один раунд.
+     *
+     * @param decision  решение игрока о взятии карты
+     * @param roundView обработчик завершённого раунда
+     * @return результат раунда
+     */
     public RoundResult playRound(PlayerDecision decision,
                                  Consumer<Round> roundView) {
         Round round = new Round();
@@ -85,16 +95,36 @@ public class Game {
         return result;
     }
 
+    /**
+     * Возвращает количество побед игрока.
+     *
+     * @return победы игрока
+     */
     public int getPlayerWins() {
         return playerWins;
     }
 
+    /**
+     * Возвращает количество побед дилера.
+     *
+     * @return победы дилера
+     */
     public int getDealerWins() {
         return dealerWins;
     }
 
+    /**
+     * Функциональный интерфейс для решения игрока.
+     */
     @FunctionalInterface
     public interface PlayerDecision {
+
+        /**
+         * Хочет ли игрок взять карту.
+         *
+         * @param round текущий раунд
+         * @return {@code true}, если хочет
+         */
         boolean wantsCard(Round round);
     }
 }

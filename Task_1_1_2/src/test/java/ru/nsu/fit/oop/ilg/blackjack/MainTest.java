@@ -12,6 +12,9 @@ import org.junit.jupiter.api.Test;
  */
 public class MainTest {
 
+    /**
+     * Проверяет, что main запускается без исключений.
+     */
     @Test
     void mainShouldStartGame() {
         String input = "0\n0\n";
