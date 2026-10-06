@@ -67,4 +67,29 @@ public class Application {
         String assignments = scanner.nextLine();
         System.out.println(expression.eval(assignments));
     }
+
+    /**
+     * Команды приложения.
+     */
+    private enum Command {
+        PRINT,
+        DERIVATIVE,
+        EVAL,
+        UNKNOWN;
+
+        /**
+         * Находит команду по имени.
+         *
+         * @param name имя команды
+         * @return команда
+         */
+        private static Command fromString(String name) {
+            for (Command command : values()) {
+                if (command.name().equalsIgnoreCase(name)) {
+                    return command;
+                }
+            }
+            return UNKNOWN;
+        }
+    }
 }
