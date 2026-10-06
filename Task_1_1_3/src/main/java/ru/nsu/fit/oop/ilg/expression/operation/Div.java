@@ -19,8 +19,15 @@ public class Div extends BinaryOperation {
     }
 
     @Override
-    protected String getSymbol() {
-        return "/";
+    public Expression derivative(String variable) {
+        Expression u = left;
+        Expression v = right;
+        Expression du = left.derivative(variable);
+        Expression dv = right.derivative(variable);
+        return new Div(
+                new Sub(new Mul(du, v), new Mul(u, dv)),
+                new Mul(v, v)
+        );
     }
 
     @Override
@@ -32,14 +39,7 @@ public class Div extends BinaryOperation {
     }
 
     @Override
-    public Expression derivative(String variable) {
-        Expression u = left;
-        Expression v = right;
-        Expression du = left.derivative(variable);
-        Expression dv = right.derivative(variable);
-        return new Div(
-                new Sub(new Mul(du, v), new Mul(u, dv)),
-                new Mul(v, v)
-        );
+    protected String getSymbol() {
+        return "/";
     }
 }

@@ -19,8 +19,13 @@ public class Mul extends BinaryOperation {
     }
 
     @Override
-    protected String getSymbol() {
-        return "*";
+    public Expression derivative(String variable) {
+        Expression du = left.derivative(variable);
+        Expression dv = right.derivative(variable);
+        return new Add(
+                new Mul(du, right),
+                new Mul(left, dv)
+        );
     }
 
     @Override
@@ -29,12 +34,7 @@ public class Mul extends BinaryOperation {
     }
 
     @Override
-    public Expression derivative(String variable) {
-        Expression du = left.derivative(variable);
-        Expression dv = right.derivative(variable);
-        return new Add(
-                new Mul(du, right),
-                new Mul(left, dv)
-        );
+    protected String getSymbol() {
+        return "*";
     }
 }

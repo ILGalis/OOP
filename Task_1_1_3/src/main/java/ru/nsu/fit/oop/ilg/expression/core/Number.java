@@ -23,12 +23,12 @@ public class Number extends Expression {
     }
 
     @Override
-    protected int eval(Map<String, Integer> variables) {
-        return value;
+    public String toString() {
+        return String.valueOf(value);
     }
 
     @Override
-    public String toString() {
-        return String.valueOf(value);
+    protected int eval(Map<String, Integer> variables) {
+        return value;
     }
 }

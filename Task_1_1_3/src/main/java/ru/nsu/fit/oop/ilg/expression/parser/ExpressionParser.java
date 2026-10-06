@@ -14,7 +14,6 @@ import ru.nsu.fit.oop.ilg.expression.operation.Sub;
  */
 public class ExpressionParser {
     private final String input;
-    private int position;
 
     /**
      * Создаёт парсер.
@@ -23,7 +22,6 @@ public class ExpressionParser {
      */
     public ExpressionParser(String input) {
         this.input = input.replaceAll("\\s+", "");
-        this.position = 0;
     }
 
     /**
@@ -32,65 +30,48 @@ public class ExpressionParser {
      * @return дерево выражения
      */
     public Expression parse() {
-        return parseExpression();
+        return parseExpression(input);
     }
 
     /**
-     * Парсит одно выражение.
+     * Парсит выражение.
      *
+     * @param s строка выражения
      * @return дерево выражения
      */
-    private Expression parseExpression() {
-        if (peek() == '(') {
-            return parseBinaryOperation();
+    private Expression parseExpression(String s) {
+        if (s.startsWith("(") && s.endsWith(")")) {
+            return parseOperation(s.substring(1, s.length() - 1));
         }
 
-        if (Character.isDigit(peek()) || peek() == '-') {
-            return parseNumber();
+        if (Character.isDigit(s.charAt(0)) || s.charAt(0) == '-') {
+            return new Number(Integer.parseInt(s));
         }
 
-        return parseVariable();
+        return new Variable(s);
     }
 
     /**
-     * Парсит бинарную операцию в скобках.
+     * Парсит бинарную операцию.
      *
+     * @param inner строка внутри скобок
      * @return дерево операции
      */
-    private Expression parseBinaryOperation() {
-        next();
-
-        String inner = readUntilMatchingBracket();
+    private Expression parseOperation(String inner) {
         int opIndex = findTopLevelOperator(inner);
-        char operator = inner.charAt(opIndex);
-
+        char op = inner.charAt(opIndex);
         String leftStr = inner.substring(0, opIndex);
         String rightStr = inner.substring(opIndex + 1);
 
-        Expression left = new ExpressionParser(leftStr).parse();
-        Expression right = new ExpressionParser(rightStr).parse();
+        Expression left = parseExpression(leftStr);
+        Expression right = parseExpression(rightStr);
 
-        return createOperation(operator, left, right);
-    }
-
-    /**
-     * Читает содержимое скобок до парной закрывающей.
-     *
-     * @return строка внутри скобок
-     */
-    private String readUntilMatchingBracket() {
-        int depth = 1;
-        int start = position;
-        while (position < input.length() && depth > 0) {
-            char c = input.charAt(position);
-            if (c == '(') {
-                depth++;
-            } else if (c == ')') {
-                depth--;
-            }
-            position++;
-        }
-        return input.substring(start, position - 1);
+        return switch (op) {
+            case '+' -> new Add(left, right);
+            case '-' -> new Sub(left, right);
+            case '*' -> new Mul(left, right);
+            default -> new Div(left, right);
+        };
     }
 
     /**
@@ -107,8 +88,7 @@ public class ExpressionParser {
                 depth++;
             } else if (c == ')') {
                 depth--;
-            } else if (depth == 0 && (c == '+' || c == '-' || c == '*'
-                    || c == '/')) {
+            } else if (depth == 0 && isOperator(c)) {
                 return i;
             }
         }
@@ -116,72 +96,12 @@ public class ExpressionParser {
     }
 
     /**
-     * Создаёт операцию по символу.
+     * Проверяет, является ли символ оператором.
      *
-     * @param operator символ
-     * @param left     левый операнд
-     * @param right    правый операнд
-     * @return операция
+     * @param c символ
+     * @return {@code true}, если оператор
      */
-    private Expression createOperation(char operator, Expression left,
-                                       Expression right) {
-        if (operator == '+') {
-            return new Add(left, right);
-        }
-        if (operator == '-') {
-            return new Sub(left, right);
-        }
-        if (operator == '*') {
-            return new Mul(left, right);
-        }
-        return new Div(left, right);
-    }
-
-    /**
-     * Парсит число.
-     *
-     * @return число
-     */
-    private Expression parseNumber() {
-        int start = position;
-        if (peek() == '-') {
-            position++;
-        }
-        while (position < input.length()
-                && Character.isDigit(input.charAt(position))) {
-            position++;
-        }
-        int value = Integer.parseInt(input.substring(start, position));
-        return new Number(value);
-    }
-
-    /**
-     * Парсит имя переменной.
-     *
-     * @return переменная
-     */
-    private Expression parseVariable() {
-        int start = position;
-        while (position < input.length()
-                && Character.isLetterOrDigit(input.charAt(position))) {
-            position++;
-        }
-        return new Variable(input.substring(start, position));
-    }
-
-    /**
-     * Возвращает текущий символ.
-     *
-     * @return символ
-     */
-    private char peek() {
-        return input.charAt(position);
-    }
-
-    /**
-     * Переходит к следующему символу.
-     */
-    private void next() {
-        position++;
+    private boolean isOperator(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/';
     }
 }

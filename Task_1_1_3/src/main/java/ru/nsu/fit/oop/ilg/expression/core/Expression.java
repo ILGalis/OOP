@@ -1,6 +1,8 @@
 package ru.nsu.fit.oop.ilg.expression.core;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,14 +52,14 @@ public abstract class Expression {
      */
     private Map<String, Integer> parseAssignments(String assignments) {
         Map<String, Integer> variables = new HashMap<>();
-        String[] pairs = assignments.split(";");
+        List<String> pairs = Arrays.asList(assignments.split(";"));
         for (String pair : pairs) {
-            String[] parts = pair.split("=");
-            if (parts.length != 2) {
+            List<String> parts = Arrays.asList(pair.split("="));
+            if (parts.size() != 2) {
                 continue;
             }
-            String name = parts[0].trim();
-            int value = Integer.parseInt(parts[1].trim());
+            String name = parts.get(0).trim();
+            int value = Integer.parseInt(parts.get(1).trim());
             variables.put(name, value);
         }
         return variables;

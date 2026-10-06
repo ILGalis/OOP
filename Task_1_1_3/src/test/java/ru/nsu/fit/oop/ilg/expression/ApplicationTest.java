@@ -17,36 +17,41 @@ import ru.nsu.fit.oop.ilg.expression.app.Application;
 class ApplicationTest {
 
     /**
-     * Проверяет полный цикл работы: ввод выражения, print, derivative,
-     * eval, exit.
+     * Проверяет команду derivative.
      */
     @Test
-    void shouldHandleFullSession() {
-        String input = "(3+(2*x))\n"
-                + "print\n"
-                + "derivative\n"
-                + "x\n"
-                + "eval\n"
-                + "x = 10\n"
-                + "exit\n";
+    void shouldHandleDerivative() {
+        String output = runWithInput("(3+(2*x))\nderivative\nx\n");
 
-        String output = runWithInput(input);
-
-        assertTrue(output.contains("(3+(2*x))"));
         assertTrue(output.contains("(0+((0*x)+(2*1)))"));
+    }
+
+    /**
+     * Проверяет команду eval.
+     */
+    @Test
+    void shouldHandleEval() {
+        String output = runWithInput("(3+(2*x))\neval\nx = 10\n");
+
         assertTrue(output.contains("23"));
     }
 
     /**
-     * Проверяет реакцию на неизвестную команду.
+     * Проверяет команду print.
+     */
+    @Test
+    void shouldHandlePrint() {
+        String output = runWithInput("(3+(2*x))\nprint\n");
+
+        assertTrue(output.contains("(3+(2*x))"));
+    }
+
+    /**
+     * Проверяет неизвестную команду.
      */
     @Test
     void shouldHandleUnknownCommand() {
-        String input = "(3+5)\n"
-                + "unknown\n"
-                + "exit\n";
-
-        String output = runWithInput(input);
+        String output = runWithInput("(3+5)\nhello\n");
 
         assertTrue(output.contains("Неизвестная команда"));
     }
@@ -66,11 +71,10 @@ class ApplicationTest {
         try {
             System.setIn(new ByteArrayInputStream(
                     input.getBytes(StandardCharsets.UTF_8)));
-            System.setOut(new PrintStream(outputStream,
-                    true, StandardCharsets.UTF_8));
+            System.setOut(new PrintStream(outputStream, true,
+                    StandardCharsets.UTF_8));
 
             new Application().run();
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {

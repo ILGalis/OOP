@@ -26,14 +26,6 @@ public class Variable extends Expression {
     }
 
     @Override
-    protected int eval(Map<String, Integer> variables) {
-        if (!variables.containsKey(name)) {
-            return 0;
-        }
-        return variables.get(name);
-    }
-
-    @Override
     public String toString() {
         return name;
     }
@@ -45,5 +37,13 @@ public class Variable extends Expression {
      */
     public String getName() {
         return name;
+    }
+
+    @Override
+    protected int eval(Map<String, Integer> variables) {
+        if (!variables.containsKey(name)) {
+            return 0;
+        }
+        return variables.get(name);
     }
 }

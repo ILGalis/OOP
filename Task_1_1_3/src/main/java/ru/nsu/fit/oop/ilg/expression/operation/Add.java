@@ -19,8 +19,8 @@ public class Add extends BinaryOperation {
     }
 
     @Override
-    protected String getSymbol() {
-        return "+";
+    public Expression derivative(String variable) {
+        return new Add(left.derivative(variable), right.derivative(variable));
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Add extends BinaryOperation {
     }
 
     @Override
-    public Expression derivative(String variable) {
-        return new Add(left.derivative(variable), right.derivative(variable));
+    protected String getSymbol() {
+        return "+";
     }
 }

@@ -21,6 +21,11 @@ public abstract class BinaryOperation extends Expression {
     }
 
     @Override
+    public String toString() {
+        return "(" + left + getSymbol() + right + ")";
+    }
+
+    @Override
     protected int eval(Map<String, Integer> variables) {
         return calculate(left.eval(variables), right.eval(variables));
     }
@@ -40,9 +45,4 @@ public abstract class BinaryOperation extends Expression {
      * @return символ
      */
     protected abstract String getSymbol();
-
-    @Override
-    public String toString() {
-        return "(" + left + getSymbol() + right + ")";
-    }
 }

@@ -7,7 +7,7 @@ import ru.nsu.fit.oop.ilg.expression.parser.ExpressionParser;
 
 /**
  * Приложение для работы с математическими выражениями.
- * Читает выражение из консоли и выполняет команды.
+ * Спрашивает выражение и действие, выводит результат.
  */
 public class Application {
     private final Scanner scanner;
@@ -22,27 +22,16 @@ public class Application {
     }
 
     /**
-     * Запускает цикл обработки команд.
+     * Запускает сценарий.
      */
     public void run() {
         System.out.println("Введите выражение:");
-        String input = scanner.nextLine();
-        expression = new ExpressionParser(input).parse();
+        expression = new ExpressionParser(scanner.nextLine()).parse();
 
-        System.out.println("Выражение:");
-        expression.print();
+        System.out.println("Что сделать? (print / derivative / eval):");
+        Command command = Command.fromString(scanner.nextLine().trim());
 
-        while (true) {
-            System.out.println();
-            System.out.println("Команды: print, derivative, eval, exit");
-            String command = scanner.nextLine().trim();
-
-            if (command.equals("exit")) {
-                break;
-            }
-
-            handleCommand(command);
-        }
+        handleCommand(command);
 
         scanner.close();
     }
@@ -52,21 +41,30 @@ public class Application {
      *
      * @param command команда
      */
-    private void handleCommand(String command) {
-        if (command.equals("print")) {
-            expression.print();
-        } else if (command.equals("derivative")) {
-            System.out.println("По какой переменной?");
-            String variable = scanner.nextLine().trim();
-            Expression derivative = expression.derivative(variable);
-            derivative.print();
-        } else if (command.equals("eval")) {
-            System.out.println("Введите значения (например, x = 10; y = 13):");
-            String assignments = scanner.nextLine();
-            int result = expression.eval(assignments);
-            System.out.println(result);
-        } else {
-            System.out.println("Неизвестная команда: " + command);
+    private void handleCommand(Command command) {
+        switch (command) {
+            case PRINT -> expression.print();
+            case DERIVATIVE -> handleDerivative();
+            case EVAL -> handleEval();
+            default -> System.out.println("Неизвестная команда");
         }
+    }
+
+    /**
+     * Обрабатывает команду дифференцирования.
+     */
+    private void handleDerivative() {
+        System.out.println("По какой переменной?");
+        String variable = scanner.nextLine().trim();
+        expression.derivative(variable).print();
+    }
+
+    /**
+     * Обрабатывает команду вычисления.
+     */
+    private void handleEval() {
+        System.out.println("Введите значения (x = 10; y = 13):");
+        String assignments = scanner.nextLine();
+        System.out.println(expression.eval(assignments));
     }
 }
