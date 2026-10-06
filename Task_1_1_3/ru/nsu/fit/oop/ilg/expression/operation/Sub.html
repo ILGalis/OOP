@@ -182,16 +182,19 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="getSymbol()">
-<h3>getSymbol</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getSymbol</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../core/BinaryOperation.html#getSymbol()">BinaryOperation</a></code></span></div>
-<div class="block">Возвращает символ операции.</div>
+<section class="detail" id="derivative(java.lang.String)">
+<h3>derivative</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../core/Expression.html" title="class in ru.nsu.fit.oop.ilg.expression.core">Expression</a></span>&nbsp;<span class="element-name">derivative</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;variable)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../core/Expression.html#derivative(java.lang.String)">Expression</a></code></span></div>
+<div class="block">Возвращает производную по заданной переменной.
+ Исходное выражение не меняется.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../core/BinaryOperation.html#getSymbol()">getSymbol</a></code>&nbsp;in class&nbsp;<code><a href="../core/BinaryOperation.html" title="class in ru.nsu.fit.oop.ilg.expression.core">BinaryOperation</a></code></dd>
+<dd><code><a href="../core/Expression.html#derivative(java.lang.String)">derivative</a></code>&nbsp;in class&nbsp;<code><a href="../core/Expression.html" title="class in ru.nsu.fit.oop.ilg.expression.core">Expression</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>variable</code> - имя переменной</dd>
 <dt>Returns:</dt>
-<dd>символ</dd>
+<dd>новое выражение — производная</dd>
 </dl>
 </section>
 </li>
@@ -214,19 +217,16 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="derivative(java.lang.String)">
-<h3>derivative</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../core/Expression.html" title="class in ru.nsu.fit.oop.ilg.expression.core">Expression</a></span>&nbsp;<span class="element-name">derivative</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;variable)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../core/Expression.html#derivative(java.lang.String)">Expression</a></code></span></div>
-<div class="block">Возвращает производную по заданной переменной.
- Исходное выражение не меняется.</div>
+<section class="detail" id="getSymbol()">
+<h3>getSymbol</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getSymbol</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../core/BinaryOperation.html#getSymbol()">BinaryOperation</a></code></span></div>
+<div class="block">Возвращает символ операции.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../core/Expression.html#derivative(java.lang.String)">derivative</a></code>&nbsp;in class&nbsp;<code><a href="../core/Expression.html" title="class in ru.nsu.fit.oop.ilg.expression.core">Expression</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>variable</code> - имя переменной</dd>
+<dd><code><a href="../core/BinaryOperation.html#getSymbol()">getSymbol</a></code>&nbsp;in class&nbsp;<code><a href="../core/BinaryOperation.html" title="class in ru.nsu.fit.oop.ilg.expression.core">BinaryOperation</a></code></dd>
 <dt>Returns:</dt>
-<dd>новое выражение — производная</dd>
+<dd>символ</dd>
 </dl>
 </section>
 </li>
