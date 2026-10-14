@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.fit.oop.ilg.graph"},{"l":"ru.nsu.fit.oop.ilg.graph.algorithm"},{"l":"ru.nsu.fit.oop.ilg.graph.app"},{"l":"ru.nsu.fit.oop.ilg.graph.core"},{"l":"ru.nsu.fit.oop.ilg.graph.graph"},{"l":"ru.nsu.fit.oop.ilg.graph.io"},{"l":"ru.nsu.fit.oop.ilg.graph.view"}];updateSearchResults();
