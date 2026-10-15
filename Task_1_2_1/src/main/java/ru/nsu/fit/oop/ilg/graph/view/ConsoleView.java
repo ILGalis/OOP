@@ -1,7 +1,6 @@
 package ru.nsu.fit.oop.ilg.graph.view;
 
 import java.util.List;
-
 import ru.nsu.fit.oop.ilg.graph.core.Graph;
 
 /**

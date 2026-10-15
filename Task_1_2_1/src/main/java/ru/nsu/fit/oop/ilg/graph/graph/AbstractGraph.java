@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-
 import ru.nsu.fit.oop.ilg.graph.core.Edge;
 import ru.nsu.fit.oop.ilg.graph.core.Graph;
 import ru.nsu.fit.oop.ilg.graph.core.Vertex;
@@ -90,7 +89,6 @@ public abstract class AbstractGraph<V> implements Graph<V> {
                 + "{vertices=" + getVertices()
                 + ", edges=" + getEdges() + "}";
     }
-
 
     /**
      * Добавляет вершину без проверок.

@@ -1,7 +1,6 @@
 package ru.nsu.fit.oop.ilg.graph.app;
 
 import java.util.Scanner;
-
 import ru.nsu.fit.oop.ilg.graph.algorithm.TopologicalSort;
 import ru.nsu.fit.oop.ilg.graph.core.Graph;
 import ru.nsu.fit.oop.ilg.graph.graph.AdjacencyListGraph;

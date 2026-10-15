@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.ilg.graph.graph.AdjacencyMatrixGraph;
 

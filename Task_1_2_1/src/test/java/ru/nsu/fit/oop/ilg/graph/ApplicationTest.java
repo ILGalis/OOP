@@ -7,7 +7,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.ilg.graph.app.Application;
 

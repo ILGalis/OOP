@@ -6,7 +6,6 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import ru.nsu.fit.oop.ilg.graph.core.Graph;
 
 /**
