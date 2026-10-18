@@ -60,7 +60,7 @@ public class Edge<V> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Edge<?> edge = (Edge<?>) o;
+        Edge<V> edge = (Edge<V>) o;
         return directed == edge.directed
                 && Objects.equals(from, edge.from)
                 && Objects.equals(to, edge.to);

@@ -1,6 +1,9 @@
 package ru.nsu.fit.oop.ilg.graph.app;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+
 import ru.nsu.fit.oop.ilg.graph.algorithm.TopologicalSort;
 import ru.nsu.fit.oop.ilg.graph.core.Graph;
 import ru.nsu.fit.oop.ilg.graph.graph.AdjacencyListGraph;
@@ -28,7 +31,7 @@ public class Application {
      * Запускает сценарий.
      */
     public void run() {
-        System.out.println("Какой тип представления графа:");
+        System.out.println("Какой тип графа:");
         System.out.println("1 - матрица смежности");
         System.out.println("2 - матрица инцидентности");
         System.out.println("3 - список смежности");
@@ -53,13 +56,14 @@ public class Application {
         System.out.println("Введите " + edgeCount
                 + " рёбер по одному в строке (формат: from to)");
         for (int i = 0; i < edgeCount; i++) {
-            String[] parts = scanner.nextLine().trim().split("\\s+");
-            if (parts.length < 2) {
+            List<String> parts = Arrays.asList(
+                    scanner.nextLine().trim().split("\\s+"));
+            if (parts.size() < 2) {
                 view.printError("Неверный формат ребра, пропускаем");
                 continue;
             }
-            String from = parts[0];
-            String to = parts[1];
+            String from = parts.get(0);
+            String to = parts.get(1);
             if (!graph.hasVertex(from)) {
                 graph.addVertex(from);
             }
