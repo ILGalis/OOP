@@ -2,13 +2,11 @@ package ru.nsu.fit.oop.ilg.hashtable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals; // <-- ВОТ СЮДА
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.NoSuchElementException;
-
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.ilg.hashtable.core.HashTable;
 
@@ -110,6 +108,7 @@ class HashTableBasicTest {
         HashTable<String, Integer> table = new HashTable<>();
         assertThrows(IllegalArgumentException.class, () -> table.put(null, 1));
     }
+
     /**
      * Проверяет, что equals возвращает false для разных типов.
      */
@@ -139,7 +138,6 @@ class HashTableBasicTest {
         HashTable<String, Integer> table = new HashTable<>();
         table.put("a", null);
 
-        // Хотя ключ есть, get вернет null, значит contains вернет false (особенность реализации)
         assertFalse(table.contains("a"));
     }
 }

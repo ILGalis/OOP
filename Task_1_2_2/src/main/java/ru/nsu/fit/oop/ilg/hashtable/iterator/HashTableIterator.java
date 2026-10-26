@@ -4,7 +4,6 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-
 import ru.nsu.fit.oop.ilg.hashtable.core.HashTable;
 
 /**
@@ -25,6 +24,10 @@ public class HashTableIterator<K, V> implements Iterator<HashTable.Entry<K, V>> 
 
     /**
      * Создаёт итератор.
+     *
+     * @param table           хеш-таблица
+     * @param expectedModCount ожидаемое количество модификаций
+     * @param tableData       массив бакетов таблицы
      */
     @SuppressWarnings("unchecked")
     public HashTableIterator(HashTable<K, V> table, int expectedModCount,
@@ -62,13 +65,10 @@ public class HashTableIterator<K, V> implements Iterator<HashTable.Entry<K, V>> 
             throw new IllegalStateException();
         }
         table.remove(currentEntry.getKey());
-        expectedModCount = table.getModCount(); // обновляем счетчик
+        expectedModCount = table.getModCount();
         currentEntry = null;
     }
 
-    /**
-     * Ищет следующий элемент.
-     */
     private void findNext() {
         nextEntry = null;
         while (currentBucket < tableData.length) {

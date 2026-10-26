@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-
 import ru.nsu.fit.oop.ilg.hashtable.iterator.HashTableIterator;
 
 /**
@@ -25,27 +24,52 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         private final K key;
         private V value;
 
+        /**
+         * Создаёт узел.
+         *
+         * @param key   ключ
+         * @param value значение
+         */
         public Entry(K key, V value) {
             this.key = key;
             this.value = value;
         }
 
+        /**
+         * Возвращает ключ.
+         *
+         * @return ключ
+         */
         public K getKey() {
             return key;
         }
 
+        /**
+         * Возвращает значение.
+         *
+         * @return значение
+         */
         public V getValue() {
             return value;
         }
 
+        /**
+         * Устанавливает значение.
+         *
+         * @param value значение
+         */
         public void setValue(V value) {
             this.value = value;
         }
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             Entry<?, ?> entry = (Entry<?, ?>) o;
             return Objects.equals(key, entry.key) && Objects.equals(value, entry.value);
         }
@@ -78,6 +102,12 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         modCount = 0;
     }
 
+    /**
+     * Добавляет пару ключ-значение.
+     *
+     * @param key   ключ
+     * @param value значение
+     */
     public void put(K key, V value) {
         if (key == null) {
             throw new IllegalArgumentException("Ключ не может быть null");
@@ -97,6 +127,12 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         modCount++;
     }
 
+    /**
+     * Обновляет значение по ключу.
+     *
+     * @param key   ключ
+     * @param value новое значение
+     */
     public void update(K key, V value) {
         int index = getIndex(key);
         for (Entry<K, V> entry : table[index]) {
@@ -108,6 +144,12 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         throw new NoSuchElementException("Ключ не найден для обновления: " + key);
     }
 
+    /**
+     * Возвращает значение по ключу.
+     *
+     * @param key ключ
+     * @return значение или null
+     */
     public V get(K key) {
         int index = getIndex(key);
         for (Entry<K, V> entry : table[index]) {
@@ -118,6 +160,12 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         return null;
     }
 
+    /**
+     * Удаляет пару ключ-значение.
+     *
+     * @param key ключ
+     * @return удалённое значение или null
+     */
     public V remove(K key) {
         int index = getIndex(key);
         Iterator<Entry<K, V>> iterator = table[index].iterator();
@@ -133,18 +181,39 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         return null;
     }
 
+    /**
+     * Проверяет наличие ключа.
+     *
+     * @param key ключ
+     * @return {@code true}, если ключ есть
+     */
     public boolean contains(K key) {
         return get(key) != null;
     }
 
+    /**
+     * Возвращает количество элементов.
+     *
+     * @return размер
+     */
     public int size() {
         return size;
     }
 
+    /**
+     * Возвращает счётчик модификаций.
+     *
+     * @return счётчик
+     */
     public int getModCount() {
         return modCount;
     }
 
+    /**
+     * Возвращает массив бакетов.
+     *
+     * @return массив бакетов
+     */
     public List<Entry<K, V>>[] getTableData() {
         return table;
     }
@@ -172,13 +241,18 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
     @Override
     @SuppressWarnings({"unchecked", "rawtypes"})
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         HashTable<?, ?> other = (HashTable<?, ?>) o;
-        if (this.size != other.size) return false;
+        if (this.size != other.size) {
+            return false;
+        }
 
-        // Приводим к сырому типу, чтобы обойти проверку дженериков
         HashTable rawThis = (HashTable) this;
         HashTable rawOther = (HashTable) other;
 

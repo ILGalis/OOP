@@ -1,7 +1,6 @@
 package ru.nsu.fit.oop.ilg.hashtable.app;
 
 import java.util.Scanner;
-
 import ru.nsu.fit.oop.ilg.hashtable.core.HashTable;
 import ru.nsu.fit.oop.ilg.hashtable.view.ConsoleView;
 
@@ -13,12 +12,18 @@ public class Application {
     private final ConsoleView view;
     private final HashTable<String, Double> hashTable;
 
+    /**
+     * Создаёт приложение.
+     */
     public Application() {
         scanner = new Scanner(System.in);
         view = new ConsoleView();
         hashTable = new HashTable<>();
     }
 
+    /**
+     * Запускает сценарий.
+     */
     public void run() {
         view.printMessage("Пример из задания:");
         hashTable.put("one", 1.0);

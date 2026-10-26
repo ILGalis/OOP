@@ -2,7 +2,6 @@ package ru.nsu.fit.oop.ilg.hashtable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.oop.ilg.hashtable.core.HashTable;
 
@@ -11,9 +10,6 @@ import ru.nsu.fit.oop.ilg.hashtable.core.HashTable;
  */
 class HashTableCollisionTest {
 
-    /**
-     * Класс с фиксированным hashCode для провокации коллизий.
-     */
     private static class CollisionKey {
         private final String name;
 
@@ -23,15 +19,19 @@ class HashTableCollisionTest {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             CollisionKey that = (CollisionKey) o;
             return name.equals(that.name);
         }
 
         @Override
         public int hashCode() {
-            return 42; // все ключи в одну корзину
+            return 42;
         }
     }
 
@@ -62,7 +62,6 @@ class HashTableCollisionTest {
     void shouldResizeOnLoadFactor() {
         HashTable<Integer, Integer> table = new HashTable<>();
 
-        // initial capacity 16, load factor 0.75 -> resize после 12 элементов
         for (int i = 0; i < 100; i++) {
             table.put(i, i * 10);
         }
