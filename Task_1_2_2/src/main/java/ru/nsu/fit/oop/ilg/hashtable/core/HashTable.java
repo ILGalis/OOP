@@ -19,6 +19,10 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
 
     /**
      * Внутренний класс для хранения пары ключ-значение.
+     * Логически принадлежит только хеш-таблице, поэтому является вложенным.
+     *
+     * @param <K> тип ключа
+     * @param <V> тип значения
      */
     public static class Entry<K, V> {
         private final K key;
