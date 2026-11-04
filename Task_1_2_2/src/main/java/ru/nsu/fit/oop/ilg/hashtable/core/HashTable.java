@@ -267,7 +267,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
 
         @Override
         public int hashCode() {
-            return Objects.hash(key, entry.value);
+            return Objects.hash(key, value);
         }
 
         @Override
