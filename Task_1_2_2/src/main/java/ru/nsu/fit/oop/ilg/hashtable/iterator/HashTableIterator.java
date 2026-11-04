@@ -15,7 +15,7 @@ import ru.nsu.fit.oop.ilg.hashtable.core.HashTable;
 public class HashTableIterator<K, V> implements Iterator<HashTable.Entry<K, V>> {
     private final HashTable<K, V> table;
     private int expectedModCount;
-    private final List<HashTable.Entry<K, V>>[] tableData;
+    private final List<List<HashTable.Entry<K, V>>> tableData;
 
     private int currentBucket = 0;
     private int currentIndex = 0;
@@ -27,11 +27,10 @@ public class HashTableIterator<K, V> implements Iterator<HashTable.Entry<K, V>> 
      *
      * @param table           хеш-таблица
      * @param expectedModCount ожидаемое количество модификаций
-     * @param tableData       массив бакетов таблицы
+     * @param tableData       коллекция бакетов таблицы
      */
-    @SuppressWarnings("unchecked")
     public HashTableIterator(HashTable<K, V> table, int expectedModCount,
-                             List<HashTable.Entry<K, V>>[] tableData) {
+                             List<List<HashTable.Entry<K, V>>> tableData) {
         this.table = table;
         this.expectedModCount = expectedModCount;
         this.tableData = tableData;
@@ -71,8 +70,8 @@ public class HashTableIterator<K, V> implements Iterator<HashTable.Entry<K, V>> 
 
     private void findNext() {
         nextEntry = null;
-        while (currentBucket < tableData.length) {
-            List<HashTable.Entry<K, V>> bucket = tableData[currentBucket];
+        while (currentBucket < tableData.size()) {
+            List<HashTable.Entry<K, V>> bucket = tableData.get(currentBucket);
             if (currentIndex < bucket.size()) {
                 nextEntry = bucket.get(currentIndex++);
                 return;

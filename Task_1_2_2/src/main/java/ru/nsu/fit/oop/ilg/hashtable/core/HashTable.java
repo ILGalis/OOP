@@ -1,5 +1,6 @@
 package ru.nsu.fit.oop.ilg.hashtable.core;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,90 +18,17 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
     private static final int INITIAL_CAPACITY = 16;
     private static final float LOAD_FACTOR = 0.75f;
 
-    /**
-     * Внутренний класс для хранения пары ключ-значение.
-     * Логически принадлежит только хеш-таблице, поэтому является вложенным.
-     *
-     * @param <K> тип ключа
-     * @param <V> тип значения
-     */
-    public static class Entry<K, V> {
-        private final K key;
-        private V value;
-
-        /**
-         * Создаёт узел.
-         *
-         * @param key   ключ
-         * @param value значение
-         */
-        public Entry(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        /**
-         * Возвращает ключ.
-         *
-         * @return ключ
-         */
-        public K getKey() {
-            return key;
-        }
-
-        /**
-         * Возвращает значение.
-         *
-         * @return значение
-         */
-        public V getValue() {
-            return value;
-        }
-
-        /**
-         * Устанавливает значение.
-         *
-         * @param value значение
-         */
-        public void setValue(V value) {
-            this.value = value;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-            Entry<?, ?> entry = (Entry<?, ?>) o;
-            return Objects.equals(key, entry.key) && Objects.equals(value, entry.value);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(key, value);
-        }
-
-        @Override
-        public String toString() {
-            return key + "=" + value;
-        }
-    }
-
-    private List<Entry<K, V>>[] table;
+    private final List<List<Entry<K, V>>> table;
     private int size;
     private int modCount;
 
     /**
      * Создаёт пустую хеш-таблицу.
      */
-    @SuppressWarnings("unchecked")
     public HashTable() {
-        table = new List[INITIAL_CAPACITY];
+        table = new ArrayList<>(INITIAL_CAPACITY);
         for (int i = 0; i < INITIAL_CAPACITY; i++) {
-            table[i] = new LinkedList<>();
+            table.add(new LinkedList<>());
         }
         size = 0;
         modCount = 0;
@@ -116,17 +44,17 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         if (key == null) {
             throw new IllegalArgumentException("Ключ не может быть null");
         }
-        if ((float) size / table.length >= LOAD_FACTOR) {
+        if ((float) size / table.size() >= LOAD_FACTOR) {
             resize();
         }
         int index = getIndex(key);
-        for (Entry<K, V> entry : table[index]) {
+        for (Entry<K, V> entry : table.get(index)) {
             if (entry.getKey().equals(key)) {
                 entry.setValue(value);
                 return;
             }
         }
-        table[index].add(new Entry<>(key, value));
+        table.get(index).add(new Entry<>(key, value));
         size++;
         modCount++;
     }
@@ -139,7 +67,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      */
     public void update(K key, V value) {
         int index = getIndex(key);
-        for (Entry<K, V> entry : table[index]) {
+        for (Entry<K, V> entry : table.get(index)) {
             if (entry.getKey().equals(key)) {
                 entry.setValue(value);
                 return;
@@ -156,7 +84,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      */
     public V get(K key) {
         int index = getIndex(key);
-        for (Entry<K, V> entry : table[index]) {
+        for (Entry<K, V> entry : table.get(index)) {
             if (entry.getKey().equals(key)) {
                 return entry.getValue();
             }
@@ -172,7 +100,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      */
     public V remove(K key) {
         int index = getIndex(key);
-        Iterator<Entry<K, V>> iterator = table[index].iterator();
+        Iterator<Entry<K, V>> iterator = table.get(index).iterator();
         while (iterator.hasNext()) {
             Entry<K, V> entry = iterator.next();
             if (entry.getKey().equals(key)) {
@@ -214,32 +142,12 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
     }
 
     /**
-     * Возвращает массив бакетов.
+     * Возвращает коллекцию бакетов.
      *
-     * @return массив бакетов
+     * @return коллекция бакетов
      */
-    public List<Entry<K, V>>[] getTableData() {
+    public List<List<Entry<K, V>>> getTableData() {
         return table;
-    }
-
-    private int getIndex(K key) {
-        return (key.hashCode() & 0x7fffffff) % table.length;
-    }
-
-    @SuppressWarnings("unchecked")
-    private void resize() {
-        List<Entry<K, V>>[] oldTable = table;
-        table = new List[oldTable.length * 2];
-        for (int i = 0; i < table.length; i++) {
-            table[i] = new LinkedList<>();
-        }
-        size = 0;
-        modCount++;
-        for (List<Entry<K, V>> bucket : oldTable) {
-            for (Entry<K, V> entry : bucket) {
-                put(entry.getKey(), entry.getValue());
-            }
-        }
     }
 
     @Override
@@ -295,5 +203,76 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
     @Override
     public Iterator<Entry<K, V>> iterator() {
         return new HashTableIterator<>(this, modCount, table);
+    }
+
+    private int getIndex(K key) {
+        return (key.hashCode() & 0x7fffffff) % table.size();
+    }
+
+    private void resize() {
+        List<List<Entry<K, V>>> oldTable = new ArrayList<>(table);
+        table.clear();
+
+        for (int i = 0; i < oldTable.size() * 2; i++) {
+            table.add(new LinkedList<>());
+        }
+
+        size = 0;
+        modCount++;
+        for (List<Entry<K, V>> bucket : oldTable) {
+            for (Entry<K, V> entry : bucket) {
+                put(entry.getKey(), entry.getValue());
+            }
+        }
+    }
+
+    /**
+     * Внутренний класс для хранения пары ключ-значение.
+     *
+     * @param <K> тип ключа
+     * @param <V> тип значения
+     */
+    public static class Entry<K, V> {
+        private final K key;
+        private V value;
+
+        public Entry(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return value;
+        }
+
+        public void setValue(V value) {
+            this.value = value;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Entry<?, ?> entry = (Entry<?, ?>) o;
+            return Objects.equals(key, entry.key) && Objects.equals(value, entry.value);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(key, entry.value);
+        }
+
+        @Override
+        public String toString() {
+            return key + "=" + value;
+        }
     }
 }
