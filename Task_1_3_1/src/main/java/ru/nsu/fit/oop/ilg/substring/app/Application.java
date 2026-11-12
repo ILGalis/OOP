@@ -45,6 +45,7 @@ public class Application {
                 new InputStreamReader(Files.newInputStream(path), StandardCharsets.UTF_8))) {
 
             List<Long> indices = finder.find(reader, substring);
+            System.out.println(indices.size());
             System.out.println(indices);
 
         } catch (IOException e) {
