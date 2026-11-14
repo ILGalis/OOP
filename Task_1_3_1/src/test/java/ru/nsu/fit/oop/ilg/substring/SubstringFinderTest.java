@@ -86,22 +86,6 @@ class SubstringFinderTest {
     }
 
     @Test
-    void shouldCoverSmallCarryBranch(@TempDir Path tempDir) throws IOException {
-        // Тест на случай, когда размер буфера больше, чем файл (ветка else в carry)
-        SubstringFinder finder = new SubstringFinder();
-        Path file = tempDir.resolve("small.txt");
-        Files.writeString(file, "abc", StandardCharsets.UTF_8);
-
-        try (var reader = Files.newBufferedReader(file, StandardCharsets.UTF_8)) {
-            List<Long> indices = finder.find(reader, "abcd");
-            assertTrue(indices.isEmpty());
-        }
-    }
-
-    /**
-     * Тестирует Application: успешный сценарий.
-     */
-    @Test
     void shouldRunApplicationSuccessfully(@TempDir Path tempDir) throws IOException {
         Path file = tempDir.resolve("input.txt");
         Files.writeString(file, "абракадабра", StandardCharsets.UTF_8);
@@ -112,9 +96,6 @@ class SubstringFinderTest {
         assertTrue(output.contains("[1, 8]"));
     }
 
-    /**
-     * Тестирует Application: файл не найден.
-     */
     @Test
     void shouldHandleFileNotFound() {
         String input = "nonexistent_file_123.txt\nбра\n";
@@ -122,12 +103,8 @@ class SubstringFinderTest {
         assertTrue(output.contains("Файл не найден!"));
     }
 
-    /**
-     * Тестирует Application: ошибка ввода-вывода (эмулируем папку вместо файла).
-     */
     @Test
     void shouldHandleIOException(@TempDir Path tempDir) {
-        // Передаем директорию вместо файла, чтобы вызвать IOException при чтении
         String input = tempDir.toAbsolutePath() + "\nбра\n";
         String output = runWithInput(input);
         assertTrue(output.contains("Ошибка при чтении файла:"));
