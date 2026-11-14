@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.fit.oop.ilg.recordbook"},{"l":"ru.nsu.fit.oop.ilg.recordbook.app"},{"l":"ru.nsu.fit.oop.ilg.recordbook.core"}];updateSearchResults();
