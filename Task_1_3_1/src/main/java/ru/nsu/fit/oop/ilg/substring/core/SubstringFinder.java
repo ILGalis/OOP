@@ -9,7 +9,7 @@ import java.util.List;
  * Класс для поиска подстроки в большом текстовом файле.
  */
 public class SubstringFinder {
-    private static final int BUFFER_SIZE = 1024 * 1024;
+    private static final int BUFFER_SIZE = 1024 * 1024; // 1MB
 
     /**
      * Ищет все вхождения подстроки в тексте.
