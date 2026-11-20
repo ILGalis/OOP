@@ -77,6 +77,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Semester</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Семестр с оценками.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -89,7 +90,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">Semester</a><wbr>(int&nbsp;semesterNumber)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает семестр.</div>
+</div>
 </div>
 </section>
 </li>
@@ -107,13 +110,19 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addGrade(ru.nsu.fit.oop.ilg.recordbook.core.Subject,ru.nsu.fit.oop.ilg.recordbook.core.Grade)" class="member-name-link">addGrade</a><wbr>(<a href="Subject.html" title="class in ru.nsu.fit.oop.ilg.recordbook.core">Subject</a>&nbsp;subject,
  <a href="Grade.html" title="enum class in ru.nsu.fit.oop.ilg.recordbook.core">Grade</a>&nbsp;grade)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Добавляет оценку.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="Subject.html" title="class in ru.nsu.fit.oop.ilg.recordbook.core">Subject</a>,<wbr><a href="Grade.html" title="enum class in ru.nsu.fit.oop.ilg.recordbook.core">Grade</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGrades()" class="member-name-link">getGrades</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает оценки семестра.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSemesterNumber()" class="member-name-link">getSemesterNumber</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает номер семестра.</div>
+</div>
 </div>
 </div>
 </div>
@@ -135,6 +144,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(int)">
 <h3>Semester</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Semester</span><wbr><span class="parameters">(int&nbsp;semesterNumber)</span></div>
+<div class="block">Создает семестр.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>semesterNumber</code> - номер семестра</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -150,18 +164,34 @@ loadScripts(document, 'script');</script>
 <h3>addGrade</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addGrade</span><wbr><span class="parameters">(<a href="Subject.html" title="class in ru.nsu.fit.oop.ilg.recordbook.core">Subject</a>&nbsp;subject,
  <a href="Grade.html" title="enum class in ru.nsu.fit.oop.ilg.recordbook.core">Grade</a>&nbsp;grade)</span></div>
+<div class="block">Добавляет оценку.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>subject</code> - дисциплина</dd>
+<dd><code>grade</code> - оценка</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getSemesterNumber()">
 <h3>getSemesterNumber</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getSemesterNumber</span>()</div>
+<div class="block">Возвращает номер семестра.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>номер</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getGrades()">
 <h3>getGrades</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="Subject.html" title="class in ru.nsu.fit.oop.ilg.recordbook.core">Subject</a>,<wbr><a href="Grade.html" title="enum class in ru.nsu.fit.oop.ilg.recordbook.core">Grade</a>&gt;</span>&nbsp;<span class="element-name">getGrades</span>()</div>
+<div class="block">Возвращает оценки семестра.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>оценки</dd>
+</dl>
 </section>
 </li>
 </ul>
