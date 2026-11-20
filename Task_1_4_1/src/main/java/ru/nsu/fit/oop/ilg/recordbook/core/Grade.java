@@ -1,6 +1,9 @@
 package ru.nsu.fit.oop.ilg.recordbook.core;
 
-public enum Grade{
+/**
+ * Оценка в зачетной книжке.
+ */
+public enum Grade {
     EXCELLENT(5),
     GOOD(4),
     ENOUGH(3),
@@ -10,14 +13,30 @@ public enum Grade{
 
     private final int value;
 
-    Grade(int value){
+    /**
+     * Создает оценку.
+     *
+     * @param value числовое значение
+     */
+    Grade(int value) {
         this.value = value;
     }
-    public int getValue(){
+
+    /**
+     * Возвращает числовое значение.
+     *
+     * @return значение
+     */
+    public int getValue() {
         return value;
     }
-    public boolean isCountsOnAverage(){
+
+    /**
+     * Влияет ли оценка на средний балл.
+     *
+     * @return true, если влияет
+     */
+    public boolean isCountsOnAverage() {
         return this != DIFF_FAIL && this != DIFF_PASS;
     }
-
 }

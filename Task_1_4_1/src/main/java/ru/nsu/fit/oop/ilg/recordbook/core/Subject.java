@@ -1,18 +1,38 @@
 package ru.nsu.fit.oop.ilg.recordbook.core;
 
-public class Subject{
+/**
+ * Дисциплина в зачетной книжке.
+ */
+public class Subject {
     private final String name;
     private final boolean isExam;
-    public Subject(String name,boolean isExam){
+
+    /**
+     * Создает дисциплину.
+     *
+     * @param name название
+     * @param isExam является ли экзаменом
+     */
+    public Subject(String name, boolean isExam) {
         this.name = name;
         this.isExam = isExam;
     }
 
-    public String getSubjectName(){
+    /**
+     * Возвращает название дисциплины.
+     *
+     * @return название
+     */
+    public String getSubjectName() {
         return name;
     }
 
-    public boolean isExam(){
+    /**
+     * Проверяет, является ли дисциплина экзаменом.
+     *
+     * @return true, если экзамен
+     */
+    public boolean isExam() {
         return isExam;
     }
 }

@@ -23,59 +23,63 @@ class RecordBookTest {
 
     @BeforeEach
     void setUp() {
-        recordBook = new RecordBook(false); // По умолчанию бюджет
-        mathExam = new Subject("Математика", true); // Экзамен
-        physicsExam = new Subject("Физика", true); // Экзамен
-        historyDiff = new Subject("История", false); // Диф. зачет
+        recordBook = new RecordBook(false);
+        mathExam = new Subject("Математика", true);
+        physicsExam = new Subject("Физика", true);
+        historyDiff = new Subject("История", false);
     }
 
-    // ==================== ТЕСТЫ СРЕДНЕГО БАЛЛА ====================
-
+    /**
+     * Проверяет средний балл для пустой зачетки.
+     */
     @Test
     void shouldReturnZeroForEmptyRecordBook() {
         assertEquals(0.0, recordBook.getAverageGrade());
     }
 
+    /**
+     * Проверяет расчет среднего балла.
+     */
     @Test
     void shouldCalculateAverageGrade() {
         Semester s1 = new Semester(1);
-        s1.addGrade(mathExam, Grade.EXCELLENT); // 5
-        s1.addGrade(physicsExam, Grade.GOOD);    // 4
-        s1.addGrade(historyDiff, Grade.DIFF_PASS); // Не влияет на средний балл (0)
+        s1.addGrade(mathExam, Grade.EXCELLENT);
+        s1.addGrade(physicsExam, Grade.GOOD);
+        s1.addGrade(historyDiff, Grade.DIFF_PASS);
 
         Semester s2 = new Semester(2);
-        s2.addGrade(historyDiff, Grade.GOOD); // 4
+        s2.addGrade(historyDiff, Grade.GOOD);
 
         recordBook.addSemester(s1);
         recordBook.addSemester(s2);
 
-        // (5 + 4 + 4) / 3 = 4.333...
         assertEquals(4.33, recordBook.getAverageGrade(), 0.01);
     }
 
-    // ==================== ТЕСТЫ ПЕРЕВОДА НА БЮДЖЕТ ====================
-
+    /**
+     * Проверяет, что бюджетник не может перевестись.
+     */
     @Test
     void studentOnBudgetCannotTransferToBudget() {
-        RecordBook budgetBook = new RecordBook(false);
-        assertFalse(budgetBook.canTransferToBudget());
+        assertFalse(recordBook.canTransferToBudget());
     }
 
+    /**
+     * Проверяет перевод, если нет троек в последних 2 сессиях.
+     */
     @Test
     void shouldTransferIfNoSatisfactoryExamsInLastTwoSemesters() {
         RecordBook paidBook = new RecordBook(true);
 
-        // 1 семестр (старый) - можно даже тройку, если он не входит в последние 2
         Semester s1 = new Semester(1);
         s1.addGrade(mathExam, Grade.ENOUGH);
 
-        // 2 и 3 семестры (последние 2) - без троек по экзаменам
         Semester s2 = new Semester(2);
         s2.addGrade(mathExam, Grade.GOOD);
 
         Semester s3 = new Semester(3);
         s3.addGrade(physicsExam, Grade.EXCELLENT);
-        s3.addGrade(historyDiff, Grade.ENOUGH); // Тройка по диф.зачету допустима!
+        s3.addGrade(historyDiff, Grade.ENOUGH);
 
         paidBook.addSemester(s1);
         paidBook.addSemester(s2);
@@ -84,6 +88,9 @@ class RecordBookTest {
         assertTrue(paidBook.canTransferToBudget());
     }
 
+    /**
+     * Проверяет отказ в переводе при тройке в последней сессии.
+     */
     @Test
     void shouldNotTransferIfSatisfactoryExamInLastSemester() {
         RecordBook paidBook = new RecordBook(true);
@@ -92,7 +99,7 @@ class RecordBookTest {
         s1.addGrade(mathExam, Grade.GOOD);
 
         Semester s2 = new Semester(2);
-        s2.addGrade(physicsExam, Grade.ENOUGH); // Тройка на экзамене в последней сессии!
+        s2.addGrade(physicsExam, Grade.ENOUGH);
 
         paidBook.addSemester(s1);
         paidBook.addSemester(s2);
@@ -100,22 +107,25 @@ class RecordBookTest {
         assertFalse(paidBook.canTransferToBudget());
     }
 
-    // ==================== ТЕСТЫ КРАСНОГО ДИПЛОМА ====================
-
+    /**
+     * Проверяет отсутствие красного диплома при тройке.
+     */
     @Test
     void shouldNotGetRedDiplomaIfHasSatisfactory() {
         Semester s1 = new Semester(1);
         s1.addGrade(mathExam, Grade.EXCELLENT);
-        s1.addGrade(physicsExam, Grade.ENOUGH); // Тройка
+        s1.addGrade(physicsExam, Grade.ENOUGH);
         recordBook.addSemester(s1);
 
         assertFalse(recordBook.canGetRedDiploma());
     }
 
+    /**
+     * Проверяет отсутствие красного диплома при менее 75% отлично.
+     */
     @Test
     void shouldNotGetRedDiplomaIfLessThan75PercentExcellent() {
         Semester s1 = new Semester(1);
-        // 3 отлично, 2 хорошо -> 60% отлично (меньше 75%)
         s1.addGrade(mathExam, Grade.EXCELLENT);
         s1.addGrade(physicsExam, Grade.EXCELLENT);
         s1.addGrade(historyDiff, Grade.EXCELLENT);
@@ -128,10 +138,12 @@ class RecordBookTest {
         assertFalse(recordBook.canGetRedDiploma());
     }
 
+    /**
+     * Проверяет получение красного диплома при 75% отлично.
+     */
     @Test
     void shouldGetRedDiplomaIf75PercentAndNoSatisfactory() {
         Semester s1 = new Semester(1);
-        // 4 отлично, 1 хорошо -> 80% отлично
         s1.addGrade(mathExam, Grade.EXCELLENT);
         s1.addGrade(physicsExam, Grade.EXCELLENT);
         s1.addGrade(historyDiff, Grade.EXCELLENT);
@@ -144,34 +156,43 @@ class RecordBookTest {
         assertTrue(recordBook.canGetRedDiploma());
     }
 
+    /**
+     * Проверяет отсутствие красного диплома при плохой ВКР.
+     */
     @Test
     void shouldNotGetRedDiplomaIfDiplomaWorkIsNotExcellent() {
         Semester s1 = new Semester(1);
         s1.addGrade(mathExam, Grade.EXCELLENT);
         recordBook.addSemester(s1);
 
-        recordBook.setDiplomWorkGrade(Grade.GOOD); // ВКР на 4
+        recordBook.setDiplomWorkGrade(Grade.GOOD);
 
         assertFalse(recordBook.canGetRedDiploma());
     }
 
+    /**
+     * Проверяет прогноз красного диплома до защиты ВКР.
+     */
     @Test
     void shouldPredictRedDiplomaBeforeDiplomaWork() {
         Semester s1 = new Semester(1);
         s1.addGrade(mathExam, Grade.EXCELLENT);
         recordBook.addSemester(s1);
 
-        // ВКР еще не защищена (null), но прогноз положительный
         assertTrue(recordBook.canGetRedDiploma());
     }
 
-    // ==================== ТЕСТЫ СТИПЕНДИИ ====================
-
+    /**
+     * Проверяет отсутствие стипендии при пустой зачетке.
+     */
     @Test
     void shouldNotGetScholarshipIfEmpty() {
         assertFalse(recordBook.canGetIncreasedScholarship());
     }
 
+    /**
+     * Проверяет получение стипендии при хороших оценках.
+     */
     @Test
     void shouldGetScholarshipIfOnlyGoodAndExcellent() {
         Semester s1 = new Semester(1);
@@ -182,13 +203,16 @@ class RecordBookTest {
         assertTrue(recordBook.canGetIncreasedScholarship());
     }
 
+    /**
+     * Проверяет отсутствие стипендии при тройке в текущем семестре.
+     */
     @Test
     void shouldNotGetScholarshipIfHasSatisfactoryInCurrentSemester() {
         Semester s1 = new Semester(1);
         s1.addGrade(mathExam, Grade.GOOD);
 
         Semester s2 = new Semester(2);
-        s2.addGrade(physicsExam, Grade.ENOUGH); // Тройка в текущем семестре
+        s2.addGrade(physicsExam, Grade.ENOUGH);
 
         recordBook.addSemester(s1);
         recordBook.addSemester(s2);
@@ -196,10 +220,13 @@ class RecordBookTest {
         assertFalse(recordBook.canGetIncreasedScholarship());
     }
 
+    /**
+     * Проверяет отсутствие стипендии при незачете.
+     */
     @Test
     void shouldNotGetScholarshipIfHasDiffFailInCurrentSemester() {
         Semester s1 = new Semester(1);
-        s1.addGrade(historyDiff, Grade.DIFF_FAIL); // Незачет
+        s1.addGrade(historyDiff, Grade.DIFF_FAIL);
         recordBook.addSemester(s1);
 
         assertFalse(recordBook.canGetIncreasedScholarship());

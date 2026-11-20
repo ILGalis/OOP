@@ -1,24 +1,34 @@
 package ru.nsu.fit.oop.ilg.recordbook.app;
 
 import java.util.Scanner;
-
 import ru.nsu.fit.oop.ilg.recordbook.core.Grade;
 import ru.nsu.fit.oop.ilg.recordbook.core.RecordBook;
 import ru.nsu.fit.oop.ilg.recordbook.core.Semester;
 import ru.nsu.fit.oop.ilg.recordbook.core.Subject;
 
+/**
+ * Приложение для работы с зачетной книжкой.
+ */
 public class Application {
     private final Scanner scanner;
     private RecordBook recordBook;
+
+    /**
+     * Создает приложение.
+     */
     public Application() {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Запускает приложение.
+     */
     public void run() {
         System.out.println("Электронная зачетная книжка ФИТ");
         System.out.print("Вы на платной форме обучения? (1 - да, 0 - нет): ");
         boolean isPaid = scanner.nextLine().trim().equals("1");
         recordBook = new RecordBook(isPaid);
+
         boolean running = true;
         while (running) {
             System.out.println("\nВыберите действие:");
@@ -30,6 +40,7 @@ public class Application {
             System.out.println("6 - Проверить красный диплом");
             System.out.println("7 - Проверить повышенную стипендию");
             System.out.println("0 - Выход");
+
             String choice = scanner.nextLine().trim();
             switch (choice) {
                 case "1" -> addSemester();
@@ -46,37 +57,41 @@ public class Application {
         scanner.close();
     }
 
-    private void addSemester(){
+    private void addSemester() {
         System.out.print("Введите номер семестра: ");
-        int number =Integer.parseInt(scanner.nextLine().trim());
+        int number = Integer.parseInt(scanner.nextLine().trim());
         recordBook.addSemester(new Semester(number));
         System.out.println("Семестр добавлен.");
     }
-    private void addGrade(){
+
+    private void addGrade() {
         System.out.print("Введите номер семестра: ");
         int number = Integer.parseInt(scanner.nextLine().trim());
-        Semester current=recordBook.getSemester(number);
-        if (current==null) {
+        Semester current = recordBook.getSemester(number);
+
+        if (current == null) {
             System.out.println("Семестр с таким номером не найден!");
             return;
         }
+
         System.out.print("Название предмета: ");
-        String name= scanner.nextLine().trim();
+        String name = scanner.nextLine().trim();
         System.out.print("Это экзамен? (1 - да, 0 - нет): ");
-        boolean isExam=scanner.nextLine().trim().equals("1");
-        Subject subject=new Subject(name, isExam);
+        boolean isExam = scanner.nextLine().trim().equals("1");
+        Subject subject = new Subject(name, isExam);
+
         System.out.println("Выберите оценку: EXCELLENT, GOOD, ENOUGH, BAD, DIFF_PASS, DIFF_FAIL");
-        String gradeStr=scanner.nextLine().trim().toUpperCase();
-        try{
-            Grade grade=Grade.valueOf(gradeStr);
+        String gradeStr = scanner.nextLine().trim().toUpperCase();
+        try {
+            Grade grade = Grade.valueOf(gradeStr);
             current.addGrade(subject, grade);
             System.out.println("Оценка добавлена.");
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("Неверная оценка.");
         }
     }
 
-    private void setDiplomaWork(){
+    private void setDiplomaWork() {
         System.out.println("Введите оценку за ВКР (EXCELLENT, GOOD, ENOUGH, BAD):");
         String gradeStr = scanner.nextLine().trim().toUpperCase();
         try {
